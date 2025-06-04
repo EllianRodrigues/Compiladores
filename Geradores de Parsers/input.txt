@@ -1,0 +1,41 @@
+# Testes básicos de operações aritméticas
+4+2
+4*4
+2/2
+10-5
+3+7-2
+5*6/3
+(8+2)*3
+100/(5+5)
+1+1+1+1
+
+# Testes com variáveis e atribuições
+x = 5
+y = x + 3
+y * 3
+
+# Expressões que usam variáveis de forma encadeada
+tempum = 50 
+tempdois = tempum - 10 
+temptres = tempdois / 2 
+tempquatro = temptres * 3 
+finaltemp = tempquatro + tempum 
+finaltemp
+
+# se o divisor for INT, o resultado é float
+dezdivididoporquatro = 10 / 4 
+dezdivididoporquatro
+cincovezesdoisdivididoportres = 5 * 2 / 3 
+cincovezesdoisdivididoportres
+
+# Atribuições e reatribuições
+contador = 0
+contador = contador + 1
+contador = contador * 5
+contador
+
+# Testes para garantir que a ordem das operações funciona
+testeordemum = 2 + 3 * 4 
+testeordemum
+testeordemdois = (2 + 3) * 4 
+testeordemdois

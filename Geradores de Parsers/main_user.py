@@ -24,6 +24,7 @@ class ArithmeticVisitor:
             return self.visitChildren(ctx)
 
     def visitChildren(self, ctx):
+        
         result = None
         for child in ctx.children:
             result = self.visit(child)
@@ -75,7 +76,7 @@ class ArithmeticVisitor:
             return int(ctx.INT().getText())
         elif ctx.VAR():
             var_name = ctx.VAR().getText()
-            if var_name not in self.variables: 
+            if var_name not in self.variables:  
                 pass 
             return self.variables[var_name]
         else: 
@@ -84,20 +85,9 @@ class ArithmeticVisitor:
 def main():
     visitor = ArithmeticVisitor()
 
-    try:
-
-        with open("input.txt", "r") as file:
-            lines = file.readlines() 
-
-        for line_num, line in enumerate(lines):
-            stripped_line = line.strip() 
-
-            if not stripped_line or stripped_line.startswith('#'):
-                continue
-
-            expression = stripped_line 
-
-            print(f">>> {expression}") 
+    while True:
+        try:
+            expression = input(">>> ")
 
             lexer = ArithmeticLexer(InputStream(expression))
             stream = CommonTokenStream(lexer)
@@ -106,20 +96,16 @@ def main():
             tree = parser.program() 
 
             if parser.getNumberOfSyntaxErrors() > 0:
-                print(f"Erro de sintaxe na linha {line_num + 1}: {expression}")
-                continue 
+                print("Erro de sintaxe!")
+                continue
 
-            result = visitor.visit(tree) 
+            result = visitor.visit(tree)
 
             if result is not None:
                 print("Resultado:", result)
-                print("-" * 40) 
-            
 
-    except FileNotFoundError:
-        print("Erro: 'input.txt' não foi encontrado")
-    except Exception as e:
-        print(f"Erro de execução: {e}")
+        except Exception as e:
+            print(f"Erro: {e}")
 
 if __name__ == '__main__':
     main()
